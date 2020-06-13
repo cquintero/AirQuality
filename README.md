@@ -8,7 +8,7 @@ does not allow for easy, visual airquality monitoring.
 
 ## Usage
 
-You will need to connect an LED (Make sure to use a resistor) to a 
+You will need to connect an LED (make sure to use a resistor) to a 
 Raspberry Pi's GPIO pins a set the script to run via cron jobs.
 
 ## To Do
