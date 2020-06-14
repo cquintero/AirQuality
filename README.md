@@ -6,7 +6,7 @@ Raspberry Pi, and breadboard with an LED to monitor apartment air quality.
 Despite publishing air quality data to a json API, the PurpleAir device
 does not allow for easy, visual airquality monitoring. I set this up
 so that the LED repeatedly blinks when air quality is bad, alerting 
-us to open a window.
+us to open a window. Test edit
 
 ## Usage
 
