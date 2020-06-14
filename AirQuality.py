@@ -1,6 +1,6 @@
 import json
 import requests
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 import csv
 
@@ -16,13 +16,13 @@ def checkair(sensor_url):
     pm2_5 = float(pm2_5_cf_1)
     if 0<= pm2_5 <=60: #evaluate current air quality
         air_quality = 'Good Air'
-        #blink_led(1,1) #blink 1x if good air
+        blink_led(1,1) #blink 1x if good air
     elif 60< pm2_5 <=120:
         air_quality = 'Concerning Air'
-        #blink_led(10,1) #blink 10x slowly if concerning air
+        blink_led(10,1) #blink 10x slowly if concerning air
     elif pm2_5 >120:
         air_quality = 'Bad Air'
-        #blink_led(100,.1) #blink 100x quickly if bad air
+        blink_led(100,.1) #blink 100x quickly if bad air
     else:
         air_quality('Unknown')
     return pm2_5, air_quality, time.ctime()
@@ -41,7 +41,7 @@ def blink_led(blink_num, blink_speed):
 
 pm2_5, air_quality, logtime = checkair(sensor_url)
 
-if air_quality = 'Bad Air': #notify me via text via ifttt that there's bad air
+if air_quality == 'Bad Air': #notify me via text via ifttt that there's bad air
         requests.post('https://maker.ifttt.com/trigger/bad_air/with/key/gTCWrvHsuzzzVx_IsH5AdxuKTeXh2OMVRQLHD47ZyvJ')
 
 with open('airqualitylog.csv', 'a', newline='') as aqlog: #log to csv file
