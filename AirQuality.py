@@ -6,8 +6,7 @@ import time
 #Config
 sensor_url = 'https://www.purpleair.com/json?show=44315'
 check_freq = 60 #PurpleAir sensor query frequency in seconds
-
-pm2_5, air_quality, logtime = checkair(sensor_url)
+LED = 18 #Using port 18 on the Raspberry Pi. Change if using a different port
 
 def checkair(sensor_url):
     purpleair = requests.get(str(sensor_url)) #Get json from PurpleAir website
@@ -16,13 +15,13 @@ def checkair(sensor_url):
     pm2_5 = float(pm2_5_cf_1)
     if 0<= pm2_5 <=60: #evaluate current air quality
         air_quality = 'Good Air'
-        blink_led(1,_) #blink once if good air
+        blink_led(1,1) #blink 1x if good air
     elif 60< pm2_5 <=120:
         air_quality = 'Concerning Air'
-        blink_led(10,1) #blink slowly if concerning air
+        blink_led(10,1) #blink 10x slowly if concerning air
     elif pm2_5 >120:
         air_quality = 'Bad Air'
-        blink_led(100,.1) #blink quickly if concerning air
+        blink_led(100,.1) #blink 100x quickly if bad air
     else:
         air_quality('Unknown')
     return pm2_5, air_quality, time.ctime()
@@ -30,10 +29,13 @@ def checkair(sensor_url):
 def blink_led(blink_num, blink_speed):
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
-    GPIO.setup(18,GPIO.OUT) #Using port 18 on the Raspberry Pi. Change if using a different port
+    GPIO.setup(LED,GPIO.OUT) 
     for _ in range(blink_num):
-        GPIO.output(LED,GPIO.HIGH)
+        GPIO.output(LED,GPIO.HIGH) #turn LED on
+        time.sleep(blink_speed) 
+        GPIO.output(LED,GPIO.LOW) #turn LED off
         time.sleep(blink_speed)
-        GPIO.output(LED,GPIO.LOW)
-        time.sleep(blink_speed)
-    GPIO.cleanup()        
+    GPIO.cleanup()
+
+
+pm2_5, air_quality, logtime = checkair(sensor_url)
