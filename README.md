@@ -1,11 +1,10 @@
 # Apartment Air Quality Alert System
+The PurpleAir II is an accurate, low-cost air quality monitor that publishes sensor readings to both an online map and a json endpoint.
+However, this does not allow for at-a-glance, visual air quality monitoring.
 
-This is a simple script that uses a PurpleAir Air Quality Monitor,
-Raspberry Pi, and breadboard with an LED to monitor apartment air quality.
-
-Despite publishing air quality data to a json API, the PurpleAir device
-does not allow for easy, visual airquality monitoring. I set this up
-so that the LED repeatedly blinks when air quality is bad, alerting 
+This simple script uses a [PurpleAir II](http://purpleair.com/) Air Quality Monitor,
+Raspberry Pi, and a breadboard with an LED to visually monitor air quality.
+The LED blinks slowly if air quality is concerning and quickly when air quality is bad, alerting 
 us to open a window.
 
 ## Usage
@@ -15,7 +14,7 @@ Raspberry Pi's GPIO pins and set the script to run via cron jobs.
 
 ## To Do
 
-- Add logging functionality.
+- Add error logging functionality.
    - Track unsuccesful requests,
    - Send data once a day to a webserver?
 - Build dashboard in colab to read and graph logs
