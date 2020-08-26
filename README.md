@@ -16,10 +16,8 @@ Raspberry Pi's GPIO pins and set the script to run via cron jobs.
 
 - Add error logging functionality.
    - Track unsuccesful requests,
-   - Send data once a day to a webserver?
 - Build dashboard in colab to read and graph logs
    - Compare indoor sensor readings with nearby outdoor sensor readings
-- On bad air events tigger text or email asking "what's going on"
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
